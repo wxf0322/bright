@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] [%d] [%t] [%c] %m%n" />
+		</layout>
+	</appender>
+	<appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="./log/netty.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] [%d] [%t] [%c] %m%n" />
+		</layout>
+	</appender>
+	<appender name="FILE_ERR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="./log/netty_err.log" />
+		<param name="Threshold" value="ERROR" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%-5p] [%d] [%t] [%c] %m%n" />
+		</layout>
+	</appender>
+	<logger name="io.netty" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="FILE_ERR" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<logger name="com.yl" additivity="false">
+		<!-- <level value="INFO,DEBUG" /> -->
+		<level value="INFO" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="FILE_ERR" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	<root>
+		<level value="info" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE_ERR" />
+	</root>
+</log4j:configuration>
